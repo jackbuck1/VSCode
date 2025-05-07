@@ -36,3 +36,27 @@
 #extensible design, with comments/doc strings explaining decisions. 
 #Deadline: end of module - must be emailed (in body of email not attatchment).
 #spend 1 - 2 hours max! 
+
+import os
+
+class DevOpsFeedback:
+    def __init__(self, studentname, puncutality_engagement, future_learning, general_comments):
+        self.studentname = studentname
+        self.punctulality_engagement = puncutality_engagement
+        self.future_learning = future_learning
+        self.general_comments = general_comments 
+        self.feedback_folder = "feedback_files"
+        self.feedback_content = ""
+
+    def generate_feedback(self):
+        general_comments = f"General comments: {self.generate.general_comments()}\n"
+        punctuality_engagement = f"Punctuality and engagement: {self.generate.punctuality_engagement()}\n"
+        further_learning = f"Recommendations for further learning: {self.generate.further_learning()}\n"
+        self.feedback_content = f"{general_comments}\n{punctuality_engagement}\n{further_learning}"
+
+    def generate_general_comments(self):
+        input f"Please enter your general feedback for {studentname}: "
+
+    def generate_punctuality_engagement(self):
+        pande = input f"Was {studentname} punctual and engaged? Please answer with 'Yes'or 'No'"
+        if pande == Yes
