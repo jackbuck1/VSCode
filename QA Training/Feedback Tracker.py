@@ -1,62 +1,33 @@
-# An app that will help automate the writing of student feedback adhering to 
-    #formatting requirements. 
-
-    #reqs:
-        #- The feedback must be written to a .txt file with the file name 
-         #   including the students name. 
-        #- The text in the file must have the headers 'General comments', 
-         #   'Punctuality and engagement' and 'further learning'. Each header will have
-          #  a short paragraph of text.
-        #- All files to be written to a sub-folder named "feedback_files"
-        #- The file should open automatically in a text editor for manual review.
-        #- The user of the app should input students names.
-        #- Inputs for marks/grades students recieve for specific factors such    
-        #    as 'understanding_level', 'contribution_level' etc. 
-        #- The marks should be used to format believable sentances to be written 
-        #    to the file.
-        #- The feedback is expected to have correct grammar and appear to be 
-        #    written personally.
-
-
-#example final format:
-
-#General comments
-#Lyudmil worked hard in this module, completing all his labs to a good standard. 
-#He picked up DevOps tooling quickly, demonstrating a good level of existing knowledge. 
-#He contributed to class discussions and worked well independently.  
-
-#Learner Punctuality and engagement 
-#Lyudmil was always punctual throughout the module and engaged well. 
-
-#Recommendations on further learning
-#Continue to practice and explore good pipeline design and integrate docker and 
-#monitoring into your projects. 
-
-#Feedback will be given on Bud - (written by me manually!) Im looking for good and 
-#extensible design, with comments/doc strings explaining decisions. 
-#Deadline: end of module - must be emailed (in body of email not attatchment).
-#spend 1 - 2 hours max! 
-
 import os
 
 class DevOpsFeedback:
-    def __init__(self, studentname, puncutality_engagement, future_learning, general_comments):
-        self.studentname = studentname
-        self.punctulality_engagement = puncutality_engagement
-        self.future_learning = future_learning
-        self.general_comments = general_comments 
-        self.feedback_folder = "feedback_files"
-        self.feedback_content = ""
+#This function allows the user to input the relevant data to give feedback on a student, based on the prompts given.
+    def __init__(self):
+        self.student_name = input ("Enter the student's name: ")
+        self.general_comments = input(f"Please enter your general comments about {self.student_name}: ")
+        self.punctuality_engagement = input(f"Please comment on {self.student_name}'s punctuality and engagement, during the course: ")
+        self.further_learning = input(f"What are your recommendations for further learning, to aid {self.student_name}: ")
+        self.understanding_level = int(input(f"Please rank {self.student_name}'s understanding of the course, from 1-10: "))
+        self.contribution_level = int(input(f"Please rank {self.student_name}'s contribution to the course, from 1-10: "))
 
+#This function collates the data that was collected above and merges it into a legible output.
     def generate_feedback(self):
-        general_comments = f"General comments: {self.generate.general_comments()}\n"
-        punctuality_engagement = f"Punctuality and engagement: {self.generate.punctuality_engagement()}\n"
-        further_learning = f"Recommendations for further learning: {self.generate.further_learning()}\n"
-        self.feedback_content = f"{general_comments}\n{punctuality_engagement}\n{further_learning}"
+        return f"\n\nFeedback for {self.student_name}:\n\nGeneral Comments about {self.student_name}:\n{self.general_comments}\n\n{self.student_name}'s Punctuality:\n{self.punctuality_engagement}\n\nFurther Learning for {self.student_name}:\n{self.further_learning}\n\nYou ranked {self.student_name} {self.contribution_level} out of 10, for Contribution Level.\n\nYou ranked {self.student_name} {self.understanding_level} out of 10, for Understanding Level\n\n"
 
-    def generate_general_comments(self):
-        input f"Please enter your general feedback for {studentname}: "
+#This function saves the feedback a folder named "Feedback" and creates one if it doesn't exist
+#It also saves the files as text file, under the name of the student
+#A statement is printed, showing where the file has been saved to
+    def save_feedback_to_file(self):
+        folder_name = "Feedback"
+        os.makedirs(folder_name, exist_ok=True)
+        file_path = os.path.join(folder_name, f"{self.student_name}_feedback.txt")
+        with open(file_path, "w", encoding="utf-8") as file:
+            file.write(self.generate_feedback())
+        print(f"Feedback saved to {file_path}")
 
-    def generate_punctuality_engagement(self):
-        pande = input f"Was {studentname} punctual and engaged? Please answer with 'Yes'or 'No'"
-        if pande == Yes
+# Creating an instance/variable that allows me to print
+Full_Feedback = DevOpsFeedback()
+print(Full_Feedback.generate_feedback())
+
+#This instance saves the feedback
+Full_Feedback.save_feedback_to_file()
