@@ -1,1 +1,1 @@
-echo "hello from {$JOB_NAME}"
+"Hello World"
